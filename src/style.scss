@@ -32,7 +32,6 @@
   font-weight: 700;
 }
 
-
 * {
   margin: 0;
   padding: 0;
@@ -42,11 +41,7 @@
 body {
   min-height: 100dvh;
   background-color: var(--color-background);
-<<<<<<< HEAD
-  overflow-x: hidden;
-=======
-  font-family: 'Comic Neue', 'Comic Sans MS', sans-serif;
->>>>>>> 53c46cb6785b0675088f4aa3eb65da228811488b
+  font-family: "Comic Neue", "Comic Sans MS", sans-serif;
 }
 
 .comic-font {
@@ -230,7 +225,6 @@ section#hero {
   }
 }
 
-<<<<<<< HEAD
 /* --- Section - Countdown Timer --- */
 section#countdown-timer {
   position: relative;
@@ -239,19 +233,7 @@ section#countdown-timer {
   min-height: 100dvh;
 
   background-image: url("../public/assets/imgs/bg.png");
-=======
 
-/* --- Section - About --- */
-section#about {
-  padding: 18rem 4rem;
-
-  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0%, rgba(0, 0, 0, 0.3) 50%, rgba(0, 0, 0, 0.78) 100%), url("../public/assets/imgs/bg-about.png");
->>>>>>> 53c46cb6785b0675088f4aa3eb65da228811488b
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-
-<<<<<<< HEAD
   .countdown-time {
     display: flex;
     align-items: center;
@@ -308,7 +290,26 @@ section#about {
         position: absolute;
         bottom: -20vh;
         left: -150vw;
-=======
+      }
+    }
+  }
+}
+
+/* --- Section - About --- */
+section#about {
+  padding: 18rem 4rem;
+
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 0) 0%,
+      rgba(0, 0, 0, 0.3) 50%,
+      rgba(0, 0, 0, 0.78) 100%
+    ),
+    url("../public/assets/imgs/bg-about.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
   .about {
     max-width: var(--content-max-width);
     margin: 0 auto;
@@ -338,7 +339,8 @@ section#about {
       height: auto;
     }
 
-    &__bg, &__exclamation {
+    &__bg,
+    &__exclamation {
       position: absolute;
       z-index: 1;
     }
@@ -364,7 +366,8 @@ section#about {
       &__main {
         font-size: 2.8rem;
         color: var(--color-accent-red);
-        text-shadow: 2px 2px 0.5px var(--color-black), 0 4px 32px var(--color-accent-yellow);
+        text-shadow: 2px 2px 0.5px var(--color-black),
+          0 4px 32px var(--color-accent-yellow);
         -webkit-text-stroke-width: 2px;
         -webkit-text-stroke-color: var(--color-black);
       }
@@ -414,7 +417,6 @@ section#about {
         top: -2.5rem;
         left: -3rem;
         -webkit-text-stroke-width: 1.5px;
->>>>>>> 53c46cb6785b0675088f4aa3eb65da228811488b
       }
     }
   }
