@@ -29,7 +29,7 @@ body {
 
 
 /* --- Section - WIP --- */
-section.wip {
+section#wip {
   display: grid;
   place-items: center;
   min-height: 100dvh;
@@ -38,34 +38,34 @@ section.wip {
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-}
 
-h1.wip-wrapper {
-  display: flex;
-  flex-direction: column;
-  padding-inline: 2rem;
-  text-align: center;
-  column-gap: 1.5rem;
-
-  font-size: clamp(1.5rem, 15vw, 7.5rem);
-  text-shadow: 5px 2px 0 #302f42;
-
-  .wip__word {
+  .wip {
     display: flex;
-    justify-content: center;
-    gap: 0.15rem;
+    flex-direction: column;
+    padding-inline: 2rem;
+    text-align: center;
+    column-gap: 1.5rem;
 
-    &__coming {
-      color: var(--color-accent-yellow);
-    }
+    font-size: clamp(1.5rem, 15vw, 7.5rem);
+    text-shadow: 5px 2px 0 #302f42;
 
-    &__soon {
-      color: var(--color-accent-red);
+    .wip__word {
+      display: flex;
+      justify-content: center;
+      gap: 0.15rem;
+
+      &__coming {
+        color: var(--color-accent-yellow);
+      }
+
+      &__soon {
+        color: var(--color-accent-red);
+      }
     }
   }
 
   @media (min-width: 768px) {
-    & {
+    h1.wip {
       flex-direction: row;
     }
   }
