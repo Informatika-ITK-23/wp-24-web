@@ -1,37 +1,38 @@
 import { gsap } from "gsap"
 
-const transitionYAndRotation = gsap.utils.wrap([50, -50])
-const divChars = document.querySelectorAll("h1 .text-wrapper div")
+const rootStyle = getComputedStyle(document.documentElement)
+const colors = {
+  accentRed: rootStyle.getPropertyValue("--color-accent-red"),
+  accentYellow: rootStyle.getPropertyValue("--color-accent-yellow"),
+}
 
-const tl = gsap.timeline()
+// === WIP section - Word color cycle ===
 let counter: number = 0
 
 const changeColor = function () {
-  if (counter % 2 === 0) {
-    const colors = gsap.utils.wrapYoyo(["#b02746", "#eda454"])
+  const cycledColors = (counter % 2)
+    ? [colors.accentYellow, colors.accentRed]
+    : [colors.accentRed, colors.accentYellow]
 
-    gsap.to("h1 .text-wrapper *", {
-      color: colors,
-    })
-  } else {
-    const colors = gsap.utils.wrapYoyo(["#eda454", "#b02746"])
-
-    gsap.to("h1 .text-wrapper *", {
-      color: colors,
-    })
-  }
+  gsap.to(".wip__word span", {
+    color: gsap.utils.wrapYoyo(cycledColors)
+  })
 
   counter++
 }
 
 gsap.set(changeColor, {
-  delay: 5,
+  delay: 2,
   onRepeat: changeColor,
   repeat: -1,
-  repeatDelay: 5,
+  repeatDelay: 2,
 })
 
-tl.from("h1 .text-wrapper *", {
+// === WIP section - Intro effects ===
+const transitionYAndRotation = gsap.utils.wrap([50, -50])
+
+const tl = gsap.timeline()
+tl.from(".wip__word span", {
   y: transitionYAndRotation,
   rotation: transitionYAndRotation,
   duration: 1,
@@ -42,7 +43,9 @@ tl.from("h1 .text-wrapper *", {
   },
 })
 
-let tween: any
+// === WIP section - Hover effects ===
+const divChars = document.querySelectorAll(".wip__word span")
+let tween: gsap.core.Tween
 
 divChars.forEach((el, i) => {
   el.addEventListener("mouseenter", () => {

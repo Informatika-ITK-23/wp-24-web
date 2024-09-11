@@ -1,5 +1,7 @@
 :root {
-  --primary-bg: #e2e2e1;
+  --color-background: #e2e2e1;
+  --color-accent-red: #b02746;
+  --color-accent-yellow: #eda454;
 }
 
 @font-face {
@@ -15,14 +17,21 @@
 
 body {
   min-height: 100dvh;
+  background-color: var(--color-background);
+}
+
+section.wip {
+  display: grid;
+  place-items: center;
+  min-height: 100dvh;
+
   background-image: url("../public/assets/imgs/bg.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-color: var(--primary-bg);
 }
 
-h1 {
+h1.wip-wrapper {
   display: flex;
   flex-direction: column;
   font-size: clamp(1.5rem, 15vw, 7.5rem);
@@ -30,37 +39,25 @@ h1 {
   text-align: center;
   font-family: "Beautiful Freak Bold";
   text-shadow: 5px 2px 0 #302f42;
-}
+  column-gap: 1.5rem;
 
-h1 .text-wrapper {
-  display: flex;
-  justify-content: center;
-  gap: 0.15rem;
-}
+  .wip__word {
+    display: flex;
+    justify-content: center;
+    gap: 0.15rem;
 
-h1 div:not(.text-wrapper) {
-  display: inline-block;
-  cursor: pointer;
-  user-select: none;
-}
+    &__coming {
+      color: var(--color-accent-yellow);
+    }
 
-h1 div.work-word,
-h1 div.progress-word {
-  color: #eda454;
-}
+    &__soon {
+      color: var(--color-accent-red);
+    }
+  }
 
-h1 div.in-word {
-  color: #b02746;
-}
-
-#app {
-  display: grid;
-  place-items: center;
-  min-height: 100dvh;
-}
-
-@media (min-width: 768px) {
-  h1 {
-    flex-direction: row;
+  @media (min-width: 768px) {
+    & {
+      flex-direction: row;
+    }
   }
 }
