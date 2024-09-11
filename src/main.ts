@@ -1,4 +1,5 @@
 import { gsap } from "gsap"
+// import { countdown } from "./utils/date.ts"
 
 const rootStyle = getComputedStyle(document.documentElement)
 const colors = {
@@ -70,3 +71,18 @@ divChars.forEach((el, i) => {
     })
   })
 })
+
+// setInterval(() => {
+//   const a = document.getElementById("a")
+//   const date = new Date()
+//   date.setDate(15)
+//   date.setHours(8, 0, 0, 0)
+//
+//   const timeLeft= countdown(date)
+//
+//   const hours = timeLeft.hours.toString().padStart(2, "0")
+//   const minutes = timeLeft.minutes.toString().padStart(2, "0")
+//   const seconds = timeLeft.seconds.toString().padStart(2, "0")
+//
+//   a!.innerHTML = `${hours}:${minutes}:${seconds}`
+// }, 1000)
