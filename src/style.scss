@@ -1,7 +1,10 @@
+/* --- Base --- */
 :root {
   --color-background: #e2e2e1;
   --color-accent-red: #b02746;
   --color-accent-yellow: #eda454;
+  --color-white: #ffffff;
+  --color-black: #000000;
 }
 
 @font-face {
@@ -20,6 +23,12 @@ body {
   background-color: var(--color-background);
 }
 
+.comic-font {
+  font-family: "Beautiful Freak Bold";
+}
+
+
+/* --- Section - WIP --- */
 section.wip {
   display: grid;
   place-items: center;
@@ -34,12 +43,12 @@ section.wip {
 h1.wip-wrapper {
   display: flex;
   flex-direction: column;
-  font-size: clamp(1.5rem, 15vw, 7.5rem);
   padding-inline: 2rem;
   text-align: center;
-  font-family: "Beautiful Freak Bold";
-  text-shadow: 5px 2px 0 #302f42;
   column-gap: 1.5rem;
+
+  font-size: clamp(1.5rem, 15vw, 7.5rem);
+  text-shadow: 5px 2px 0 #302f42;
 
   .wip__word {
     display: flex;
@@ -58,6 +67,112 @@ h1.wip-wrapper {
   @media (min-width: 768px) {
     & {
       flex-direction: row;
+    }
+  }
+}
+
+
+/* --- Section - Hero --- */
+section#hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  flex-wrap: wrap;
+  column-gap: 5rem;
+  row-gap: 6rem;
+  min-height: 100dvh;
+
+  padding: 0 3rem;
+
+  background-image: url("../public/assets/imgs/bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .wp-logo {
+    position: relative;
+
+    & > img {
+      height: auto;
+      filter: drop-shadow(6px 6px 4px rgba(0, 0, 0, 0.25));
+    }
+
+    &__text {
+      width: 350px;
+    }
+
+    &__star {
+      width: 120px;
+
+      position: absolute;
+      bottom: 0;
+      left: -1rem;
+    }
+  }
+
+  .callout {
+    position: relative;
+
+    &__catchphrase, &__logo {
+      position: absolute;
+    }
+
+    &__catchphrase {
+      bottom: -2rem;
+
+      font-size: 2rem;
+      line-height: 2.3rem;
+      text-align: center;
+      color: var(--color-white);
+      text-shadow: 2px 2px 3px var(--color-black), 0 4px 37.8px rgba(237, 164, 84, 0.8);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: var(--color-black);
+    }
+
+    & > img {
+      height: auto;
+    }
+
+    &__img {
+      width: 400px;
+      filter: drop-shadow(6px 6px 4px rgba(0, 0, 0, 0.4));
+    }
+
+    &__logo {
+      top: -50px;
+      right: 50px;
+
+      width: 150px;
+    }
+  }
+
+  @media (min-width: 768px) {
+    .wp-logo {
+      &__text {
+        width: 500px;
+      }
+
+      &__star {
+        width: 160px;
+      }
+    }
+
+    .callout {
+      &__catchphrase {
+        font-size: 3.75rem;
+        line-height: 4rem;
+        -webkit-text-stroke-width: 2px;
+      }
+
+      &__img {
+        width: 600px;
+      }
+
+      &__logo {
+        top: -75px;
+        width: 200px;
+      }
     }
   }
 }
