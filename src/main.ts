@@ -1,4 +1,5 @@
 import { gsap } from "gsap"
+import { randomNum } from "./utils/randomNum.ts"
 // import { countdown } from "./utils/date.ts"
 
 const rootStyle = getComputedStyle(document.documentElement)
@@ -11,12 +12,13 @@ const colors = {
 let counter: number = 0
 
 const changeColor = function () {
-  const cycledColors = (counter % 2)
-    ? [colors.accentYellow, colors.accentRed]
-    : [colors.accentRed, colors.accentYellow]
+  const cycledColors =
+    counter % 2
+      ? [colors.accentYellow, colors.accentRed]
+      : [colors.accentRed, colors.accentYellow]
 
   gsap.to(".wip__word span", {
-    color: gsap.utils.wrapYoyo(cycledColors)
+    color: gsap.utils.wrapYoyo(cycledColors),
   })
 
   counter++
@@ -71,6 +73,40 @@ divChars.forEach((el, i) => {
     })
   })
 })
+
+// === Countdown section - Cloud9 effects ===
+document.addEventListener("DOMContentLoaded", () => randomNum(10, 21, 29)) // just delete this function if too hard to implement ~ Nico
+
+const cloud9TopTl = gsap.timeline({ repeat: -1, yoyo: true }),
+  cloudNikaBotTl = gsap.timeline({ repeat: -1, yoyo: true })
+
+cloud9TopTl
+  .to(".cloud-img__upper", {
+    y: -15,
+    x: 15,
+    duration: 2.25,
+    ease: "linear",
+  })
+  .to(".cloud-img__upper", {
+    y: 5,
+    x: -10,
+    duration: 2,
+    ease: "linear",
+  })
+
+cloudNikaBotTl
+  .to(".cloud-img__bottom", {
+    y: 15,
+    x: -15,
+    duration: 2.25,
+    ease: "linear",
+  })
+  .to(".cloud-img__bottom", {
+    y: -5,
+    x: 10,
+    duration: 2,
+    ease: "linear",
+  })
 
 // setInterval(() => {
 //   const a = document.getElementById("a")
