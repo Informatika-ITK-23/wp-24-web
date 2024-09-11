@@ -5,12 +5,33 @@
   --color-accent-yellow: #eda454;
   --color-white: #ffffff;
   --color-black: #000000;
+  --content-max-width: 80rem;
+}
+
+@font-face {
+  font-family: "Apple Garamond";
+  src: url("../public/assets/fonts/AppleGaramond.ttf") format("truetype");
 }
 
 @font-face {
   font-family: "Beautiful Freak Bold";
   src: url("../public/assets/fonts/Beautiful_Freak_Bold.otf") format("opentype");
 }
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url("../public/assets/fonts/ComicNeue-Regular.otf") format("opentype");
+  font-style: normal;
+  font-weight: 400;
+}
+
+@font-face {
+  font-family: "Comic Neue";
+  src: url("../public/assets/fonts/ComicNeue-Bold.otf") format("opentype");
+  font-style: normal;
+  font-weight: 700;
+}
+
 
 * {
   margin: 0;
@@ -21,6 +42,7 @@
 body {
   min-height: 100dvh;
   background-color: var(--color-background);
+  font-family: 'Comic Neue', 'Comic Sans MS', sans-serif;
 }
 
 .comic-font {
@@ -172,6 +194,126 @@ section#hero {
       &__logo {
         top: -75px;
         width: 200px;
+      }
+    }
+  }
+}
+
+
+/* --- Section - About --- */
+section#about {
+  padding: 18rem 4rem;
+
+  background-image: url("../public/assets/imgs/bg-about.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .about {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+
+    &__yapping {
+      font-size: 1rem;
+      font-weight: bold;
+      line-height: 1.8rem;
+      text-indent: 2.5rem;
+      text-shadow: 4px 4px 8px black;
+      margin-bottom: 2rem;
+
+      color: var(--color-white);
+
+      &:last-of-type {
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .about-callout {
+    position: relative;
+    margin: 6rem auto;
+    width: fit-content;
+
+    img {
+      height: auto;
+    }
+
+    &__bg, &__exclamation {
+      position: absolute;
+      z-index: 1;
+    }
+
+    &__bg {
+      top: -4.5rem;
+      width: 220px;
+    }
+
+    &__exclamation {
+      top: -4.75rem;
+      right: 10%;
+      width: 75px;
+      transform: rotate(15deg);
+    }
+
+    &__title {
+      position: relative;
+      z-index: 10;
+      width: fit-content;
+      margin-left: 0.5rem;
+
+      &__main {
+        font-size: 2.8rem;
+        color: var(--color-accent-red);
+        text-shadow: 2px 2px 0.5px var(--color-black), 0 4px 32px var(--color-accent-yellow);
+        -webkit-text-stroke-width: 2px;
+        -webkit-text-stroke-color: var(--color-black);
+      }
+
+      &__sub {
+        position: absolute;
+        top: -2rem;
+        left: -2rem;
+
+        font-size: 1.75rem;
+        font-family: "Apple Garamond", serif;
+        text-transform: lowercase;
+        color: var(--color-accent-yellow);
+        text-shadow: 2px 2px 4px var(--color-black);
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: black;
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .about__yapping {
+      font-size: 1.15rem;
+      line-height: 2.25rem;
+    }
+
+    .about-callout {
+      margin: 5rem 0;
+
+      &__bg {
+        top: -6.5rem;
+        width: 300px;
+      }
+
+      &__exclamation {
+        top: -6.5rem;
+        right: 10%;
+        width: 100px;
+      }
+
+      &__title__main {
+        font-size: 4rem;
+      }
+
+      &__title__sub {
+        font-size: 2.5rem;
+        top: -2.5rem;
+        left: -3rem;
+        -webkit-text-stroke-width: 1.5px;
       }
     }
   }
