@@ -39,7 +39,7 @@
 }
 
 body {
-  min-height: 100dvh;
+  min-height: 100vh;
   background-color: var(--color-background);
   overflow-x: hidden;
   font-family: "Comic Neue", "Comic Sans MS", sans-serif;
@@ -57,7 +57,7 @@ img {
 section#wip {
   display: grid;
   place-items: center;
-  min-height: 100dvh;
+  min-height: 100vh;
 
   background-image: linear-gradient(
       180deg,
@@ -113,7 +113,7 @@ section#hero {
   flex-wrap: wrap;
   column-gap: 5rem;
   row-gap: 6rem;
-  min-height: 100dvh;
+  min-height: 100vh;
 
   padding: 0 3rem;
 
@@ -244,7 +244,7 @@ section#countdown-timer {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 50dvh;
+  min-height: 50vh;
 
   background-image: linear-gradient(
       180deg,
@@ -351,7 +351,7 @@ section#countdown-timer {
   }
 
   @media (min-width: 1024px) {
-    min-height: 60dvh;
+    min-height: 60vh;
 
     .cloud-img {
       width: 36rem;
@@ -369,7 +369,7 @@ section#countdown-timer {
   }
 
   @media (min-width: 1280px) {
-    min-height: 65dvh;
+    min-height: 65vh;
 
     .cloud-img {
       width: 40rem;
