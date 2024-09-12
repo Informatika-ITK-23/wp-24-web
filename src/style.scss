@@ -642,9 +642,16 @@ section#footer {
         font-weight: 500;
         line-height: normal;
         text-transform: uppercase;
+        color: #000;
+        text-decoration: none;
+
+        &:hover {
+          // text-decoration: underline;
+          color: green;
+        }
 
         .underline {
-          text-decoration: underline;
+          // text-decoration: underline;
         }
       }
     }
