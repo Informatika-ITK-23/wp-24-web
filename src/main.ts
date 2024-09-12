@@ -8,7 +8,7 @@ const colors = {
   accentYellow: rootStyle.getPropertyValue("--color-accent-yellow"),
 }
 
-const targetDate = new Date('September 15, 2024 08:00:00 UTC+8:00')
+const targetDate = new Date("September 15, 2024 08:00:00 UTC+8:00")
 
 // === WIP section - Word color cycle ===
 let counter: number = 0
@@ -85,7 +85,7 @@ const updateCountdown = () => {
   }
 
   setInterval(() => {
-    const timeLeft= countdown(targetDate)
+    const timeLeft = countdown(targetDate)
 
     const hours = timeLeft.hours.toString().padStart(2, "0")
     const minutes = timeLeft.minutes.toString().padStart(2, "0")
@@ -108,28 +108,65 @@ const cloud9TopTl = gsap.timeline({ repeat: -1, yoyo: true }),
 
 cloud9TopTl
   .to(".cloud-img__top", {
-    y: -15,
-    // x: 15,
+    y: -5,
     duration: 2.25,
     ease: "linear",
   })
   .to(".cloud-img__top", {
     y: 5,
-    // x: -10,
     duration: 2,
     ease: "linear",
   })
 
 cloudNikaBotTl
   .to(".cloud-img__bottom", {
-    y: 15,
-    // x: -15,
+    y: 5,
     duration: 2.25,
     ease: "linear",
   })
   .to(".cloud-img__bottom", {
     y: -5,
-    // x: 10,
     duration: 2,
     ease: "linear",
+  })
+
+// === About section - animate callout ===
+const callOutTl = gsap.timeline()
+
+callOutTl
+  .from(".about-callout", {
+    opacity: 0,
+    scale: 0,
+    duration: 0.75,
+    ease: "power4.in",
+    delay: 1.5,
+  })
+  .to(".about-callout__bg", {
+    duration: 0.25,
+    rotate: "+=" + gsap.utils.random(-3, 3, true)(),
+    repeat: -1,
+    yoyo: true,
+    ease: "rough",
+  })
+  .to(".about-callout__exclamation", {
+    duration: 0.2,
+    x: "+=" + gsap.utils.random(-5, 5, true)(),
+    y: "+=" + gsap.utils.random(-5, 5, true)(),
+    repeat: -1,
+    yoyo: true,
+    ease: "rough",
+  })
+  .to(".about-callout__title__sub", {
+    duration: 0.5,
+    rotate: 5,
+    repeat: -1,
+    yoyo: true,
+    ease: "rough",
+  })
+  .to(".about-callout__title__main", {
+    duration: 0.75,
+    rotate: -5,
+    repeat: -1,
+    yoyo: true,
+    ease: "rough",
   })
