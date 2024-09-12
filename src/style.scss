@@ -41,6 +41,7 @@
 body {
   min-height: 100dvh;
   background-color: var(--color-background);
+  overflow-x: hidden;
   font-family: "Comic Neue", "Comic Sans MS", sans-serif;
 }
 
@@ -109,7 +110,7 @@ section#hero {
 
   padding: 0 3rem;
 
-  background-image: url("../public/assets/imgs/bg.png");
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0) 0, rgba(0, 0, 0, 0) 80%, rgba(0, 0, 0, 0.25) 100%),url("../public/assets/imgs/bg.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -230,9 +231,17 @@ section#countdown-timer {
   position: relative;
   display: grid;
   place-items: center;
-  min-height: 100dvh;
+  min-height: 50dvh;
 
-  background-image: url("../public/assets/imgs/bg.png");
+  background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.25) 0, rgba(0, 0, 0, 0) 20%), url("../public/assets/imgs/bg-halftone-1.png"), url("../public/assets/imgs/bg.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .countdown-wrapper {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+  }
 
   .countdown-time {
     display: flex;
@@ -274,22 +283,85 @@ section#countdown-timer {
   }
 
   .cloud-img {
-    position: relative;
-    width: 100%;
+    position: absolute;
+    width: 24rem;
+
+    &__top {
+      top: -3.5rem;
+    }
 
     &__bottom {
-      position: absolute;
-      bottom: -25vh;
+      bottom: -5rem;
+    }
+
+    &__left {
+      left: 0;
+    }
+
+    &__right {
+      right: 0;
+    }
+
+    &.cloud-img__bottom.cloud-img__right,
+    &.cloud-img__top.cloud-img__right {
+      transform: scaleX(-1);
+    }
+
+    &__speaker {
+      width: 8rem;
+      top: calc(100% - 9rem);
+      left: 2rem;
     }
   }
 
-  @media (max-width: 768px) {
+  @media (min-width: 768px) {
     .cloud-img {
-      &__bottom {
-        max-width: 250px;
-        position: absolute;
-        bottom: -20vh;
-        left: -150vw;
+      width: 30rem;
+
+      &__top {
+        top: -5rem;
+      }
+
+      &__speaker {
+        width: 10rem;
+        top: calc(100% - 12rem);
+        left: 4rem;
+      }
+    }
+  }
+
+  @media (min-width: 1024px) {
+    min-height: 60dvh;
+
+    .cloud-img {
+      width: 36rem;
+
+      &__top {
+        top: -7rem;
+      }
+
+      &__speaker {
+        width: 12rem;
+        top: calc(100% - 14rem);
+        left: 4rem;
+      }
+    }
+  }
+
+  @media (min-width: 1280px) {
+    min-height: 65dvh;
+
+    .cloud-img {
+      width: 40rem;
+
+      &__top {
+        top: -9rem;
+      }
+
+      &__speaker {
+        width: 14rem;
+        top: calc(100% - 18rem);
+        left: 4rem;
       }
     }
   }

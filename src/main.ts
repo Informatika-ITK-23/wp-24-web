@@ -76,7 +76,7 @@ divChars.forEach((el, i) => {
   })
 })
 
-// === Countdown section - Cloud9 effects ===
+// === Countdown section - Update countdown ===
 const updateCountdown = () => {
   const el = {
     hours: document.getElementById("countdown-hours")!,
@@ -102,19 +102,20 @@ document.addEventListener("DOMContentLoaded", () => {
   randomNum(timeLeft.hours, timeLeft.minutes, timeLeft.seconds, updateCountdown)
 })
 
+// === Countdown section - Cloud9 effects ===
 const cloud9TopTl = gsap.timeline({ repeat: -1, yoyo: true }),
   cloudNikaBotTl = gsap.timeline({ repeat: -1, yoyo: true })
 
 cloud9TopTl
-  .to(".cloud-img__upper", {
+  .to(".cloud-img__top", {
     y: -15,
-    x: 15,
+    // x: 15,
     duration: 2.25,
     ease: "linear",
   })
-  .to(".cloud-img__upper", {
+  .to(".cloud-img__top", {
     y: 5,
-    x: -10,
+    // x: -10,
     duration: 2,
     ease: "linear",
   })
@@ -122,13 +123,13 @@ cloud9TopTl
 cloudNikaBotTl
   .to(".cloud-img__bottom", {
     y: 15,
-    x: -15,
+    // x: -15,
     duration: 2.25,
     ease: "linear",
   })
   .to(".cloud-img__bottom", {
     y: -5,
-    x: 10,
+    // x: 10,
     duration: 2,
     ease: "linear",
   })
