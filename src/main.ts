@@ -1,12 +1,14 @@
 import { gsap } from "gsap"
 import { randomNum } from "./utils/randomNum.ts"
-// import { countdown } from "./utils/date.ts"
+import { countdown } from "./utils/date.ts"
 
 const rootStyle = getComputedStyle(document.documentElement)
 const colors = {
   accentRed: rootStyle.getPropertyValue("--color-accent-red"),
   accentYellow: rootStyle.getPropertyValue("--color-accent-yellow"),
 }
+
+const targetDate = new Date('September 15, 2024 08:00:00 UTC+8:00')
 
 // === WIP section - Word color cycle ===
 let counter: number = 0
@@ -75,7 +77,30 @@ divChars.forEach((el, i) => {
 })
 
 // === Countdown section - Cloud9 effects ===
-document.addEventListener("DOMContentLoaded", () => randomNum(10, 21, 29)) // just delete this function if too hard to implement ~ Nico
+const updateCountdown = () => {
+  const el = {
+    hours: document.getElementById("countdown-hours")!,
+    minutes: document.getElementById("countdown-minutes")!,
+    seconds: document.getElementById("countdown-seconds")!,
+  }
+
+  setInterval(() => {
+    const timeLeft= countdown(targetDate)
+
+    const hours = timeLeft.hours.toString().padStart(2, "0")
+    const minutes = timeLeft.minutes.toString().padStart(2, "0")
+    const seconds = timeLeft.seconds.toString().padStart(2, "0")
+
+    el.hours.innerHTML = hours
+    el.minutes.innerHTML = minutes
+    el.seconds.innerHTML = seconds
+  }, 1000)
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  const timeLeft = countdown(targetDate)
+  randomNum(timeLeft.hours, timeLeft.minutes, timeLeft.seconds, updateCountdown)
+})
 
 const cloud9TopTl = gsap.timeline({ repeat: -1, yoyo: true }),
   cloudNikaBotTl = gsap.timeline({ repeat: -1, yoyo: true })
@@ -107,18 +132,3 @@ cloudNikaBotTl
     duration: 2,
     ease: "linear",
   })
-
-// setInterval(() => {
-//   const a = document.getElementById("a")
-//   const date = new Date()
-//   date.setDate(15)
-//   date.setHours(8, 0, 0, 0)
-//
-//   const timeLeft= countdown(date)
-//
-//   const hours = timeLeft.hours.toString().padStart(2, "0")
-//   const minutes = timeLeft.minutes.toString().padStart(2, "0")
-//   const seconds = timeLeft.seconds.toString().padStart(2, "0")
-//
-//   a!.innerHTML = `${hours}:${minutes}:${seconds}`
-// }, 1000)
