@@ -599,6 +599,7 @@ section#footer {
   .box {
     position: relative;
     display: flex;
+    gap: 1rem;
     background-color: var(--color-background);
     justify-content: space-between;
     padding: 30px 40px;
@@ -636,22 +637,27 @@ section#footer {
       }
 
       .footer__contact-person {
-        font-family: "PP Neue Montreal";
         font-size: 20px;
-        font-style: normal;
-        font-weight: 500;
-        line-height: normal;
+        font-weight: bold;
+        line-height: 1.8rem;
         text-transform: uppercase;
         color: #000;
         text-decoration: none;
 
         &:hover {
-          // text-decoration: underline;
+          text-decoration: underline;
           color: green;
         }
-
+        
         .underline {
-          // text-decoration: underline;
+          text-decoration: underline;
+        }
+        
+        .icon-link {
+          fill: green;
+          width: 14px;
+          margin-left: -8px;
+          margin-bottom: 8px;
         }
       }
     }
@@ -686,7 +692,6 @@ section#footer {
   @media (max-width: 1200px) {
     .box {
       flex-direction: column;
-      align-items: center;
       text-align: center;
       margin: 0 2rem;
 
@@ -698,13 +703,14 @@ section#footer {
 
       &__left {
         max-width: 100%;
+        gap: 8px;
 
         .footer__heading {
           font-size: 28px;
         }
 
         .footer__contact-person {
-          font-size: 18px;
+          font-size: 16px;
         }
       }
 
@@ -733,16 +739,28 @@ section#footer {
   }
 
   @media (max-width: 800px) {
-    .box .computer-img {
-      width: 160px;
-      top: auto;
-      bottom: -1rem;
+    .box {
+      flex-direction: column-reverse;
+
+      .computer-img {
+        width: 160px;
+        right: -2rem;
+        top: -5rem;
+      }
+
+      &__left {
+        .footer__contact-person {
+          font-size: 14px;
+        }
+      }
     }
   }
 
   @media (max-width: 500px) {
     .box .computer-img {
-      width: 100px;
+      width: 120px;
+      right: 0;
+      top: -3rem;
     }
 
     .box {
