@@ -466,7 +466,7 @@ section#about {
       180deg,
       rgba(0, 0, 0, 0) 0%,
       rgba(0, 0, 0, 0.3) 50%,
-      rgba(0, 0, 0, 0.78) 100%
+      rgba(0, 0, 0, 1) 100%
     ),
     url("../public/assets/imgs/bg-about.png");
   background-position: center;
@@ -582,6 +582,210 @@ section#about {
         top: -2.5rem;
         left: -3rem;
         -webkit-text-stroke-width: 1.5px;
+      }
+    }
+  }
+}
+
+section#expo-projects {
+  background-image: linear-gradient(
+    180deg,
+    rgba(0, 0, 0, 1) 0,
+    rgba(0, 0, 0, 0) 20%
+  ),
+  url("../public/assets/imgs/project-page-bg.png");
+  background-position: right;
+  background-size: cover;
+  background-repeat: no-repeat;
+
+  .wrapper {
+    max-width: var(--content-max-width);
+    margin: 0 auto;
+    padding: 18rem 0;
+  }
+
+  .title {
+    font-size: 2rem;
+    letter-spacing: 0.25rem;
+
+    color: var(--color-accent-yellow);
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: var(--color-white);
+    text-shadow: 2px 2px 8px var(--color-black);
+
+    width: fit-content;
+    padding: .5rem 1.5rem;
+    margin-bottom: 2rem;
+
+    background: var(--color-accent-red) url("../public/assets/imgs/bg-halftone.png");
+    border: 2px solid var(--color-white);
+    box-shadow: 1px 1px 0 var(--color-white), -1px -1px 0 var(--color-white), inset 2px 2px 10px rgba(0, 0, 0, 0.25);
+  }
+
+  .expo-projects {
+    background-color: var(--color-black);
+
+    display: grid;
+    gap: 0.5rem;
+  }
+
+  .project {
+    display: grid;
+    align-content: space-between;
+    row-gap: 0.5rem;
+    column-gap: 1rem;
+    grid-template-areas:
+      "title-wrapper title-wrapper"
+      "author author"
+      "tags tags"
+      "img img";
+
+    padding: 1rem 1rem;
+    background: var(--color-white);
+    font-weight: bold;
+    box-shadow: 4px 4px 8px var(--color-black);
+
+    &__title-wrapper {
+      grid-area: title-wrapper;
+    }
+
+    &__title {
+      font-size: 2.5rem;
+      line-height: 2.8rem;
+      margin-bottom: 0;
+    }
+
+    &__subtitle {
+      font-size: 1.5rem;
+      line-height: 1.5rem;
+    }
+
+    &__author {
+      grid-area: author;
+    }
+
+    &__tags {
+      grid-area: tags;
+      align-self: end;
+    }
+
+    &__img {
+      width: 100%;
+      min-width: 100px;
+      height: auto;
+      margin-left: auto;
+      grid-area: img;
+
+      border: 2px solid var(--color-black);
+      box-shadow: 6px 8px 0 0 var(--color-black);
+    }
+  }
+
+  @media (min-width: 640px) {
+    .title {
+      font-size: 3rem;
+    }
+
+    .expo-projects {
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .project {
+      &:first-of-type {
+        grid-row: 1 / span 2;
+        grid-column: 1 / span 2;
+
+        grid-template-areas:
+        "title-wrapper title-wrapper author"
+        "tags img img";
+
+        .project__author {
+          justify-self: end;
+        }
+
+        .project__img {
+          max-width: 300px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 768px) {
+    .title {
+      font-size: 3.5rem;
+    }
+
+    // I have no idea how to layout the grid in this breakpoint
+  }
+
+  @media (min-width: 1024px) {
+    .title {
+      font-size: 3.75rem;
+    }
+
+    .expo-projects {
+      grid-template-columns: repeat(10, 1fr);
+    }
+
+    .project {
+      grid-template-areas:
+        "title-wrapper title-wrapper author"
+        "tags img img";
+
+      grid-column-end: span 5;
+
+      .project__title {
+        font-size: 2.8rem;
+      }
+
+      .project__subtitle {
+        font-size: 1.8rem;
+      }
+
+      .project__author {
+        justify-self: end;
+      }
+
+      .project__img {
+        max-width: 240px;
+      }
+
+      &:first-of-type {
+        grid-column: 1 / span 6;
+        grid-row: 1 / span 2;
+
+        .project__img {
+          max-width: 280px;
+        }
+      }
+
+      &:nth-of-type(2),
+      &:nth-of-type(3),
+      {
+        grid-template-areas:
+        "title-wrapper title-wrapper author"
+        "tags img img";
+        grid-column-end: span 4;
+
+        .project__img {
+          max-width: 200px;
+        }
+      }
+    }
+  }
+
+  @media (min-width: 1280px) {
+    .title {
+      font-size: 4rem;
+    }
+
+    .project {
+      .project__img {
+        max-width: 300px;
+      }
+
+      &:first-of-type .project__img {
+        max-width: 360px;
       }
     }
   }
