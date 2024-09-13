@@ -587,13 +587,14 @@ section#about {
   }
 }
 
+// --------- Section Expo Projects Showcase ---------
 section#expo-projects {
   background-image: linear-gradient(
-    180deg,
-    rgba(0, 0, 0, 1) 0,
-    rgba(0, 0, 0, 0) 20%
-  ),
-  url("../public/assets/imgs/project-page-bg.png");
+      180deg,
+      rgba(0, 0, 0, 1) 0,
+      rgba(0, 0, 0, 0) 20%
+    ),
+    url("../public/assets/imgs/project-page-bg.png");
   background-position: right;
   background-size: cover;
   background-repeat: no-repeat;
@@ -605,6 +606,7 @@ section#expo-projects {
   }
 
   .title {
+    margin: auto;
     font-size: 2rem;
     letter-spacing: 0.25rem;
 
@@ -614,12 +616,14 @@ section#expo-projects {
     text-shadow: 2px 2px 8px var(--color-black);
 
     width: fit-content;
-    padding: .5rem 1.5rem;
+    padding: 0.5rem 1.5rem;
     margin-bottom: 2rem;
 
-    background: var(--color-accent-red) url("../public/assets/imgs/bg-halftone.png");
+    background: var(--color-accent-red)
+      url("../public/assets/imgs/bg-halftone.png");
     border: 2px solid var(--color-white);
-    box-shadow: 1px 1px 0 var(--color-white), -1px -1px 0 var(--color-white), inset 2px 2px 10px rgba(0, 0, 0, 0.25);
+    box-shadow: 1px 1px 0 var(--color-white), -1px -1px 0 var(--color-white),
+      inset 2px 2px 10px rgba(0, 0, 0, 0.25);
   }
 
   .expo-projects {
@@ -630,6 +634,7 @@ section#expo-projects {
   }
 
   .project {
+    position: relative;
     display: grid;
     align-content: space-between;
     row-gap: 0.5rem;
@@ -645,8 +650,45 @@ section#expo-projects {
     font-weight: bold;
     box-shadow: 4px 4px 8px var(--color-black);
 
+    &__cta {
+      width: fit-content;
+      margin-top: 1rem;
+      padding: 0.5rem 1.25rem;
+      border: 2px solid var(--color-black);
+      background-color: var(--color-accent-red);
+      box-shadow: 1px 1px 0 var(--color-black), -1px -1px 0 var(--color-black),
+        inset 2px 2px 10px rgba(0, 0, 0, 0.25);
+
+      font-size: clamp(1rem, 5vw, 1.25rem);
+      color: var(--color-white);
+      text-shadow: 2px 2px 3px var(--color-black),
+        0 4px 37.8px rgba(237, 164, 84, 0.8);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: var(--color-black);
+      cursor: pointer;
+      overflow: hidden;
+      transition: 100ms all ease-in;
+
+      &:hover {
+        background-color: var(--color-accent-yellow);
+      }
+
+      @media (max-width: 576px) {
+        padding: 0.25rem 1rem;
+        margin-top: 0.25rem;
+      }
+    }
+
     &__title-wrapper {
       grid-area: title-wrapper;
+      display: flex;
+      flex-direction: column;
+
+      @media (max-width: 576px) {
+        flex-direction: row;
+        align-items: flex-start;
+        justify-content: space-between;
+      }
     }
 
     &__title {
@@ -658,6 +700,53 @@ section#expo-projects {
     &__subtitle {
       font-size: 1.5rem;
       line-height: 1.5rem;
+    }
+
+    &__yapping {
+      position: absolute;
+      inset: 0;
+      background-color: hsla(0, 0%, 100%, 0.25);
+      backdrop-filter: blur(20px);
+      font-size: clamp(0.9rem, 3vw, 1rem);
+      line-height: 150%;
+      opacity: 0;
+      visibility: hidden;
+      transition: 250ms all ease-in;
+
+      padding: clamp(0.5rem, 3vw, 2rem);
+      overflow-y: scroll;
+      z-index: 999;
+
+      &-close {
+        margin-top: 1.5rem;
+        margin-left: auto;
+        width: fit-content;
+        padding: 0.5rem 1rem;
+        border: 2px solid var(--color-black);
+        background-color: var(--color-accent-red);
+        box-shadow: 1px 1px 0 var(--color-black), -1px -1px 0 var(--color-black),
+          inset 2px 2px 10px rgba(0, 0, 0, 0.25);
+
+        font-size: clamp(1rem, 5vw, 1.25rem);
+        color: var(--color-white);
+        text-shadow: 2px 2px 3px var(--color-black),
+          0 4px 37.8px rgba(237, 164, 84, 0.8);
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: var(--color-black);
+        cursor: pointer;
+        overflow: hidden;
+        transition: 100ms all ease-in;
+
+        &:hover {
+          background-color: var(--color-accent-yellow);
+        }
+      }
+    }
+
+    &__yapping-active {
+      opacity: 1;
+      visibility: visible;
+      transition: 250ms all ease-out;
     }
 
     &__author {
@@ -696,8 +785,8 @@ section#expo-projects {
         grid-column: 1 / span 2;
 
         grid-template-areas:
-        "title-wrapper title-wrapper author"
-        "tags img img";
+          "title-wrapper title-wrapper author"
+          "tags img img";
 
         .project__author {
           justify-self: end;
@@ -720,6 +809,7 @@ section#expo-projects {
 
   @media (min-width: 1024px) {
     .title {
+      margin-inline: unset;
       font-size: 3.75rem;
     }
 
@@ -760,11 +850,10 @@ section#expo-projects {
       }
 
       &:nth-of-type(2),
-      &:nth-of-type(3),
-      {
+      &:nth-of-type(3) {
         grid-template-areas:
-        "title-wrapper title-wrapper author"
-        "tags img img";
+          "title-wrapper title-wrapper author"
+          "tags img img";
         grid-column-end: span 4;
 
         .project__img {
@@ -785,7 +874,7 @@ section#expo-projects {
       }
 
       &:first-of-type .project__img {
-        max-width: 360px;
+        max-width: 500px;
       }
     }
   }
@@ -794,7 +883,12 @@ section#expo-projects {
 /* --- Footer - WIP --- */
 section#footer {
   position: relative;
-  background-image: url("../public/assets/imgs/project-page-bg.png");
+  background-image: linear-gradient(
+      180deg,
+      rgba(0, 0, 0, 1) 0,
+      rgba(0, 0, 0, 0) 20%
+    ),
+    url("../public/assets/imgs/project-page-bg.png");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -852,11 +946,11 @@ section#footer {
           text-decoration: underline;
           color: green;
         }
-        
+
         .underline {
           text-decoration: underline;
         }
-        
+
         .icon-link {
           fill: green;
           width: 14px;

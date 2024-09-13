@@ -170,3 +170,51 @@ callOutTl
     yoyo: true,
     ease: "rough",
   })
+
+// === Projects Section ===
+const ctaProject = document.querySelectorAll(".project__cta")
+const ctaCloseDesc = document.querySelectorAll(".project__yapping-close")
+const descriptionProject = document.querySelectorAll(".project__yapping")
+
+ctaProject?.forEach((cta) =>
+  cta.addEventListener("click", function (e: any) {
+    const clicked = e.target.closest(".project")
+
+    if (!clicked) return
+
+    // Remove active classes
+    descriptionProject.forEach((desc) =>
+      desc.classList.remove("project__yapping-active")
+    )
+
+    console.log(e.target.closest(".project").dataset.yapping)
+
+    // Activate content area
+    document
+      ?.querySelector(
+        `.project__yapping-${
+          clicked.querySelector(".project__yapping").dataset.yapping
+        }`
+      )
+      ?.classList.add("project__yapping-active")
+  })
+)
+
+ctaCloseDesc?.forEach((ctaClose) =>
+  ctaClose.addEventListener("click", function (e: any) {
+    const clicked = e.target.closest(".project")
+
+    if (!clicked) return
+
+    console.log(e.target.closest(".project").dataset.yapping)
+
+    // Deactivate content area
+    document
+      ?.querySelector(
+        `.project__yapping-${
+          clicked.querySelector(".project__yapping").dataset.yapping
+        }`
+      )
+      ?.classList.remove("project__yapping-active")
+  })
+)
