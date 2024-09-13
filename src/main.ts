@@ -8,7 +8,7 @@ const colors = {
   accentYellow: rootStyle.getPropertyValue("--color-accent-yellow"),
 }
 
-const targetDate = new Date("September 15, 2024 08:00:00 UTC+8:00")
+const targetDate = new Date("September 15, 2024 08:30:00 UTC+8:00")
 
 // === WIP section - Word color cycle ===
 let counter: number = 0
