@@ -1,42 +1,42 @@
-import { gsap } from "gsap"
-import { randomNum } from "./utils/randomNum.ts"
-import { countdown } from "./utils/date.ts"
+import { gsap } from "gsap";
+import { randomNum } from "./utils/randomNum.ts";
+import { countdown } from "./utils/date.ts";
 
-const rootStyle = getComputedStyle(document.documentElement)
+const rootStyle = getComputedStyle(document.documentElement);
 const colors = {
   accentRed: rootStyle.getPropertyValue("--color-accent-red"),
   accentYellow: rootStyle.getPropertyValue("--color-accent-yellow"),
-}
+};
 
-const targetDate = new Date("September 15, 2024 08:30:00 UTC+8:00")
+const targetDate = new Date("September 15, 2024 08:30:00 UTC+8:00");
 
 // === WIP section - Word color cycle ===
-let counter: number = 0
+let counter: number = 0;
 
 const changeColor = function () {
   const cycledColors =
     counter % 2
       ? [colors.accentYellow, colors.accentRed]
-      : [colors.accentRed, colors.accentYellow]
+      : [colors.accentRed, colors.accentYellow];
 
   gsap.to(".wip__word span", {
     color: gsap.utils.wrapYoyo(cycledColors),
-  })
+  });
 
-  counter++
-}
+  counter++;
+};
 
 gsap.set(changeColor, {
   delay: 2,
   onRepeat: changeColor,
   repeat: -1,
   repeatDelay: 2,
-})
+});
 
 // === WIP section - Intro effects ===
-const transitionYAndRotation = gsap.utils.wrap([50, -50])
+const transitionYAndRotation = gsap.utils.wrap([50, -50]);
 
-const tl = gsap.timeline()
+const tl = gsap.timeline();
 tl.from(".wip__word span", {
   y: transitionYAndRotation,
   rotation: transitionYAndRotation,
@@ -46,11 +46,11 @@ tl.from(".wip__word span", {
   stagger: {
     each: 0.05,
   },
-})
+});
 
 // === WIP section - Hover effects ===
-const divChars = document.querySelectorAll(".wip__word span")
-let tween: gsap.core.Tween
+const divChars = document.querySelectorAll(".wip__word span");
+let tween: gsap.core.Tween;
 
 divChars.forEach((el, i) => {
   el.addEventListener("mouseenter", () => {
@@ -60,11 +60,11 @@ divChars.forEach((el, i) => {
       scale: 1.075,
       duration: 0.2,
       ease: "elastic.out",
-    })
-  })
+    });
+  });
 
   el.addEventListener("mouseleave", () => {
-    gsap.killTweensOf(tween)
+    gsap.killTweensOf(tween);
 
     gsap.to(el, {
       y: 0,
@@ -72,9 +72,9 @@ divChars.forEach((el, i) => {
       scale: 1,
       duration: 0.2,
       ease: "elastic.out",
-    })
-  })
-})
+    });
+  });
+});
 
 // === Countdown section - Update countdown ===
 const updateCountdown = () => {
@@ -82,29 +82,34 @@ const updateCountdown = () => {
     hours: document.getElementById("countdown-hours")!,
     minutes: document.getElementById("countdown-minutes")!,
     seconds: document.getElementById("countdown-seconds")!,
-  }
+  };
 
   setInterval(() => {
-    const timeLeft = countdown(targetDate)
+    const timeLeft = countdown(targetDate);
 
-    const hours = timeLeft.hours.toString().padStart(2, "0")
-    const minutes = timeLeft.minutes.toString().padStart(2, "0")
-    const seconds = timeLeft.seconds.toString().padStart(2, "0")
+    const hours = timeLeft.hours.toString().padStart(2, "0");
+    const minutes = timeLeft.minutes.toString().padStart(2, "0");
+    const seconds = timeLeft.seconds.toString().padStart(2, "0");
 
-    el.hours.innerHTML = hours
-    el.minutes.innerHTML = minutes
-    el.seconds.innerHTML = seconds
-  }, 1000)
-}
+    el.hours.innerHTML = hours;
+    el.minutes.innerHTML = minutes;
+    el.seconds.innerHTML = seconds;
+  }, 1000);
+};
 
 document.addEventListener("DOMContentLoaded", () => {
-  const timeLeft = countdown(targetDate)
-  randomNum(timeLeft.hours, timeLeft.minutes, timeLeft.seconds, updateCountdown)
-})
+  const timeLeft = countdown(targetDate);
+  randomNum(
+    timeLeft.hours,
+    timeLeft.minutes,
+    timeLeft.seconds,
+    updateCountdown
+  );
+});
 
 // === Countdown section - Cloud9 effects ===
 const cloud9TopTl = gsap.timeline({ repeat: -1, yoyo: true }),
-  cloudNikaBotTl = gsap.timeline({ repeat: -1, yoyo: true })
+  cloudNikaBotTl = gsap.timeline({ repeat: -1, yoyo: true });
 
 cloud9TopTl
   .to(".cloud-img__top", {
@@ -116,7 +121,7 @@ cloud9TopTl
     y: 5,
     duration: 2,
     ease: "linear",
-  })
+  });
 
 cloudNikaBotTl
   .to(".cloud-img__bottom", {
@@ -128,10 +133,10 @@ cloudNikaBotTl
     y: -5,
     duration: 2,
     ease: "linear",
-  })
+  });
 
 // === About section - animate callout ===
-const callOutTl = gsap.timeline()
+const callOutTl = gsap.timeline();
 
 callOutTl
   .from(".about-callout", {
@@ -169,25 +174,25 @@ callOutTl
     repeat: -1,
     yoyo: true,
     ease: "rough",
-  })
+  });
 
 // === Projects Section ===
-const ctaProject = document.querySelectorAll(".project__cta")
-const ctaCloseDesc = document.querySelectorAll(".project__yapping-close")
-const descriptionProject = document.querySelectorAll(".project__yapping")
+const ctaProject = document.querySelectorAll(".project__cta");
+const ctaCloseDesc = document.querySelectorAll(".project__yapping-close");
+const descriptionProject = document.querySelectorAll(".project__yapping");
 
 ctaProject?.forEach((cta) =>
   cta.addEventListener("click", function (e: any) {
-    const clicked = e.target.closest(".project")
+    const clicked = e.target.closest(".project");
 
-    if (!clicked) return
+    if (!clicked) return;
 
     // Remove active classes
     descriptionProject.forEach((desc) =>
       desc.classList.remove("project__yapping-active")
-    )
+    );
 
-    console.log(e.target.closest(".project").dataset.yapping)
+    console.log(e.target.closest(".project").dataset.yapping);
 
     // Activate content area
     document
@@ -196,17 +201,17 @@ ctaProject?.forEach((cta) =>
           clicked.querySelector(".project__yapping").dataset.yapping
         }`
       )
-      ?.classList.add("project__yapping-active")
+      ?.classList.add("project__yapping-active");
   })
-)
+);
 
 ctaCloseDesc?.forEach((ctaClose) =>
   ctaClose.addEventListener("click", function (e: any) {
-    const clicked = e.target.closest(".project")
+    const clicked = e.target.closest(".project");
 
-    if (!clicked) return
+    if (!clicked) return;
 
-    console.log(e.target.closest(".project").dataset.yapping)
+    console.log(e.target.closest(".project").dataset.yapping);
 
     // Deactivate content area
     document
@@ -215,6 +220,19 @@ ctaCloseDesc?.forEach((ctaClose) =>
           clicked.querySelector(".project__yapping").dataset.yapping
         }`
       )
-      ?.classList.remove("project__yapping-active")
+      ?.classList.remove("project__yapping-active");
   })
-)
+);
+
+const visitExpoTitle = gsap.timeline({ repeat: -1, yoyo: true });
+visitExpoTitle
+  .to(".visit-expo", {
+    rotate: 2,
+    duration: 1.5,
+    ease: "linear",
+  })
+  .to(".visit-expo", {
+    rotate: -2,
+    duration: 2,
+    ease: "linear",
+  });
