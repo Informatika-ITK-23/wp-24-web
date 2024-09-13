@@ -152,7 +152,7 @@ section#hero {
   .time-place-event {
     position: absolute;
     bottom: -7.5vh;
-    right: 0;
+    left: 0;
     padding: 0.5rem 1.25rem;
     border: 2px solid var(--color-black);
     background-color: var(--color-accent-red);
@@ -173,6 +173,47 @@ section#hero {
 
     &__place {
       font-size: 1rem;
+    }
+  }
+
+  .cta {
+    display: flex;
+    position: absolute;
+    bottom: -5.35vh;
+    right: 0;
+    padding: 1.1rem 2.25rem;
+    border: 2px solid var(--color-black);
+    background-color: var(--color-accent-yellow);
+    box-shadow: 1px 1px 0 var(--color-black), -1px -1px 0 var(--color-black),
+      inset 2px 2px 10px rgba(0, 0, 0, 0.25);
+    transform: rotate(-5deg);
+    z-index: 999;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 100ms all ease-in;
+
+    &:hover {
+      background-color: var(--color-accent-yellow-hover);
+    }
+
+    &__desc {
+      font-size: 1.25rem;
+      text-align: right;
+      color: var(--color-white);
+      text-shadow: 2px 2px 3px var(--color-black),
+        0 4px 37.8px rgba(237, 164, 84, 0.8);
+      -webkit-text-stroke-width: 1px;
+      -webkit-text-stroke-color: var(--color-black);
+    }
+
+    &__place {
+      font-size: 1rem;
+    }
+
+    .icon-link {
+      width: 20px;
+      margin-left: 8px;
+      margin-bottom: 8px;
     }
   }
 
@@ -228,6 +269,12 @@ section#hero {
   @media (max-width: 768px) {
     .time-place-event {
       transform: scale(0.75) rotate(-6deg);
+      left: -5.2vh;
+    }
+    
+    .cta {
+      transform: scale(0.75) rotate(-6deg);
+      right: -4.4vh;
     }
 
     .cloud-img {
@@ -648,11 +695,11 @@ section#footer {
           text-decoration: underline;
           color: green;
         }
-        
+
         .underline {
           text-decoration: underline;
         }
-        
+
         .icon-link {
           fill: green;
           width: 14px;
