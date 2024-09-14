@@ -8,7 +8,8 @@ const colors = {
   accentYellow: rootStyle.getPropertyValue("--color-accent-yellow"),
 };
 
-const targetDate = new Date("September 15, 2024 08:30:00 UTC+8:00");
+const eventStartDate = new Date("September 14, 2024 09:47:00 UTC+8:00");
+const eventOpeningDate = new Date("September 14, 2024 09:50:40 UTC+8:00");
 
 // === WIP section - Word color cycle ===
 let counter: number = 0;
@@ -77,34 +78,58 @@ divChars.forEach((el, i) => {
 });
 
 // === Countdown section - Update countdown ===
-const updateCountdown = () => {
-  const el = {
-    hours: document.getElementById("countdown-hours")!,
-    minutes: document.getElementById("countdown-minutes")!,
-    seconds: document.getElementById("countdown-seconds")!,
-  };
+const countdownEl = {
+  hours: document.getElementById("countdown-hours")!,
+  minutes: document.getElementById("countdown-minutes")!,
+  seconds: document.getElementById("countdown-seconds")!,
+};
 
-  setInterval(() => {
-    const timeLeft = countdown(targetDate);
+const updateCountdown = (date: Date, onFinishCallback: (() => void) | null = null) => {
+  const interval = setInterval(() => {
+    try {
+      const timeLeft = countdown(date);
 
-    const hours = timeLeft.hours.toString().padStart(2, "0");
-    const minutes = timeLeft.minutes.toString().padStart(2, "0");
-    const seconds = timeLeft.seconds.toString().padStart(2, "0");
+      const hours = timeLeft.hours.toString().padStart(2, "0");
+      const minutes = timeLeft.minutes.toString().padStart(2, "0");
+      const seconds = timeLeft.seconds.toString().padStart(2, "0");
 
-    el.hours.innerHTML = hours;
-    el.minutes.innerHTML = minutes;
-    el.seconds.innerHTML = seconds;
+      countdownEl.hours.innerHTML = hours;
+      countdownEl.minutes.innerHTML = minutes;
+      countdownEl.seconds.innerHTML = seconds;
+    }
+    catch (e) {
+      clearInterval(interval)
+
+      if (onFinishCallback) {
+        onFinishCallback()
+      }
+
+      return
+    }
   }, 1000);
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-  const timeLeft = countdown(targetDate);
-  randomNum(
-    timeLeft.hours,
-    timeLeft.minutes,
-    timeLeft.seconds,
-    updateCountdown
-  );
+  try {
+    const timeLeft = countdown(eventStartDate);
+
+    randomNum(
+      timeLeft.hours,
+      timeLeft.minutes,
+      timeLeft.seconds,
+      () => updateCountdown(eventStartDate, () => updateCountdown(eventOpeningDate)),
+    );
+  }
+  catch (e) {
+    const timeLeft = countdown(eventOpeningDate);
+
+    randomNum(
+      timeLeft.hours,
+      timeLeft.minutes,
+      timeLeft.seconds,
+      () => updateCountdown(eventOpeningDate),
+    );
+  }
 });
 
 // === Countdown section - Cloud9 effects ===
