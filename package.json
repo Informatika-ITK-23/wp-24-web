@@ -9,6 +9,7 @@
     "preview": "vite preview"
   },
   "devDependencies": {
+    "@types/canvas-confetti": "^1.6.4",
     "sharp": "^0.33.5",
     "svgo": "^3.3.2",
     "typescript": "^5.5.3",
@@ -16,6 +17,7 @@
     "vite-plugin-image-optimizer": "^1.1.8"
   },
   "dependencies": {
+    "canvas-confetti": "^1.9.3",
     "gsap": "^3.12.5",
     "sass": "^1.78.0"
   }

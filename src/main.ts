@@ -1,3 +1,4 @@
+import confetti from "canvas-confetti";
 import { gsap } from "gsap";
 import { randomNum } from "./utils/randomNum.ts";
 import { countdown } from "./utils/date.ts";
@@ -8,7 +9,8 @@ const colors = {
   accentYellow: rootStyle.getPropertyValue("--color-accent-yellow"),
 };
 
-const targetDate = new Date("September 15, 2024 08:30:00 UTC+8:00");
+const eventStartDate = new Date("September 15, 2024 08:30:00 UTC+8:00");
+const eventOpeningDate = new Date("September 15, 2024 09:50:00 UTC+8:00");
 
 // === WIP section - Word color cycle ===
 let counter: number = 0;
@@ -77,34 +79,91 @@ divChars.forEach((el, i) => {
 });
 
 // === Countdown section - Update countdown ===
-const updateCountdown = () => {
-  const el = {
-    hours: document.getElementById("countdown-hours")!,
-    minutes: document.getElementById("countdown-minutes")!,
-    seconds: document.getElementById("countdown-seconds")!,
-  };
+const countdownEl = {
+  hours: document.getElementById("countdown-hours")!,
+  minutes: document.getElementById("countdown-minutes")!,
+  seconds: document.getElementById("countdown-seconds")!,
+};
 
-  setInterval(() => {
-    const timeLeft = countdown(targetDate);
+const updateCountdown = (date: Date, onFinishCallback: (() => void) | null = null) => {
+  const interval = setInterval(() => {
+    try {
+      const timeLeft = countdown(date);
 
-    const hours = timeLeft.hours.toString().padStart(2, "0");
-    const minutes = timeLeft.minutes.toString().padStart(2, "0");
-    const seconds = timeLeft.seconds.toString().padStart(2, "0");
+      const hours = timeLeft.hours.toString().padStart(2, "0");
+      const minutes = timeLeft.minutes.toString().padStart(2, "0");
+      const seconds = timeLeft.seconds.toString().padStart(2, "0");
 
-    el.hours.innerHTML = hours;
-    el.minutes.innerHTML = minutes;
-    el.seconds.innerHTML = seconds;
+      countdownEl.hours.innerHTML = hours;
+      countdownEl.minutes.innerHTML = minutes;
+      countdownEl.seconds.innerHTML = seconds;
+    }
+    catch (e) {
+      clearInterval(interval)
+
+      if (onFinishCallback) {
+        onFinishCallback()
+      }
+
+      return
+    }
   }, 1000);
 };
 
+
+const onCountdownEnd = () => {
+  const confettiColors = [colors.accentYellow, colors.accentRed];
+
+  const duration: number = 10;
+  const animationEnd = Date.now() + duration * 1000
+
+  const confettiEffects = () => {
+    confetti({
+      particleCount: 2,
+      angle: 60,
+      spread: 55,
+      startVelocity: 60,
+      origin: { x: 0, y: 0.75 },
+      colors: confettiColors,
+    });
+    confetti({
+      particleCount: 2,
+      angle: 120,
+      spread: 55,
+      startVelocity: 60,
+      origin: { x: 1, y: 0.75 },
+      colors: confettiColors,
+    });
+
+    if (Date.now() < animationEnd) {
+      requestAnimationFrame(confettiEffects);
+    }
+  }
+
+  confettiEffects()
+}
+
 document.addEventListener("DOMContentLoaded", () => {
-  const timeLeft = countdown(targetDate);
-  randomNum(
-    timeLeft.hours,
-    timeLeft.minutes,
-    timeLeft.seconds,
-    updateCountdown
-  );
+  try {
+    const timeLeft = countdown(eventStartDate);
+
+    randomNum(
+      timeLeft.hours,
+      timeLeft.minutes,
+      timeLeft.seconds,
+      () => updateCountdown(eventStartDate, () => updateCountdown(eventOpeningDate)),
+    );
+  }
+  catch (e) {
+    const timeLeft = countdown(eventOpeningDate);
+
+    randomNum(
+      timeLeft.hours,
+      timeLeft.minutes,
+      timeLeft.seconds,
+      () => updateCountdown(eventOpeningDate, onCountdownEnd),
+    );
+  }
 });
 
 // === Countdown section - Cloud9 effects ===
