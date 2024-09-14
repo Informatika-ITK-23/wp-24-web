@@ -3,6 +3,8 @@
   --color-background: #e2e2e1;
   --color-accent-red: #b02746;
   --color-accent-yellow: #eda454;
+  --color-accent-yellow-hover: #c28645;
+  --color-accent-yellow-active: #9f6e39;
   --color-white: #ffffff;
   --color-black: #000000;
   --content-max-width: 80rem;
@@ -194,6 +196,10 @@ section#hero {
 
     &:hover {
       background-color: var(--color-accent-yellow-hover);
+    }
+
+    &:active {
+      background-color: var(--color-accent-yellow-active);
     }
 
     &__desc {
