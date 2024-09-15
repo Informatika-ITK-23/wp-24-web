@@ -10,7 +10,7 @@ const colors = {
 };
 
 const eventStartDate = new Date("September 15, 2024 08:30:00 UTC+8:00");
-const eventOpeningDate = new Date("September 15, 2024 09:50:00 UTC+8:00");
+const eventOpeningDate = new Date("September 15, 2024 09:55:00 UTC+8:00");
 
 // === WIP section - Word color cycle ===
 let counter: number = 0;
